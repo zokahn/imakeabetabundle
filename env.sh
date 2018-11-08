@@ -1,19 +1,19 @@
 export DOCKER_TLS_VERIFY=1
 export COMPOSE_TLS_VERSION=TLSv1_2
 export DOCKER_CERT_PATH=$PWD
-export DOCKER_HOST=tcp://172.28.128.21:443
+export DOCKER_HOST=tcp://docker.zokahn.local:443
 
 if kubectl >/dev/null 2>&1; then
     unset KUBECONFIG
-    kubectl config set-cluster ucp_172.28.128.21:6443_admin --server https://172.28.128.21:6443 --certificate-authority "$PWD/ca.pem" --embed-certs
-    kubectl config set-credentials ucp_172.28.128.21:6443_admin --client-key "$PWD/key.pem" --client-certificate "$PWD/cert.pem" --embed-certs
-    kubectl config set-context ucp_172.28.128.21:6443_admin --user ucp_172.28.128.21:6443_admin --cluster ucp_172.28.128.21:6443_admin
+    kubectl config set-cluster ucp_docker.zokahn.local:6443_zokahn --server https://docker.zokahn.local:6443 --certificate-authority "$PWD/ca.pem" --embed-certs
+    kubectl config set-credentials ucp_docker.zokahn.local:6443_zokahn --client-key "$PWD/key.pem" --client-certificate "$PWD/cert.pem" --embed-certs
+    kubectl config set-context ucp_docker.zokahn.local:6443_zokahn --user ucp_docker.zokahn.local:6443_zokahn --cluster ucp_docker.zokahn.local:6443_zokahn
 fi
 export KUBECONFIG=$PWD/kube.yml
 
 #
-# Bundle for user admin
-# UCP Instance ID t1e2qkh3837ae9yq7c1m8wca2
+# Bundle for user zokahn
+# UCP Instance ID 17gs421odelgufgyjialrnk0a
 #
 # This admin cert will also work directly against Swarm and the individual
 # engine proxies for troubleshooting.  After sourcing this env file, use
